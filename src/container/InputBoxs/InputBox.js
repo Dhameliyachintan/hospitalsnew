@@ -2,7 +2,7 @@ import React from 'react';
 import { FormfeedStyle, InputBoxstyle } from './InputBoxstyle';
 
 
-function InputBoxs({children,errors=false,errorMessages='', ...rest}) {
+function InputBox({children,errors=false,errorMessages='', ...rest}) {
     return (
         <>
         <InputBoxstyle {...rest}>
@@ -17,4 +17,4 @@ function InputBoxs({children,errors=false,errorMessages='', ...rest}) {
 }
 
 
-export default InputBoxs;
+export default InputBox;

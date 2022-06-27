@@ -1,39 +1,19 @@
-// import React from 'react';
-// import { Formfeedstyled, InputBoxstyled } from './InputBoxstyled';
-
-// function Inputbox({children,errors=false,errorMessages='',...rests}) {
-//     return (
-//         <>
-//             <InputBoxstyled  {...rests}>
-//                  {children}
-//             </InputBoxstyled>
-
-//             <Formfeedstyled error={errors}>
-//                 {errorMessages}
-//             </Formfeedstyled>
-//         </>
-//     );
-// }
-
-// export default Inputbox;
-
-
 import React from 'react';
-import {Formfeedstyled, InputBoxstyled} from './InputBoxstyled';
+import { Formfeedstyled, InputBoxstyled } from './InputBoxstyled';
 
-function InputBox({children,errors=false,errormessage='',...rest}) {
+function Inputbox({children,errors=false,errorMessages='',...rests}) {
     return (
         <>
-            <InputBoxstyled {...rest}>
-            {children}
+            <InputBoxstyled  {...rests}>
+                 {children}
             </InputBoxstyled>
 
-            
-             <Formfeedstyled error = {errors}>
-            {errormessage}
-             </Formfeedstyled>
+            <Formfeedstyled error={errors}>
+                {errorMessages}
+            </Formfeedstyled>
         </>
     );
 }
 
-export default InputBox;
+export default Inputbox;
+
