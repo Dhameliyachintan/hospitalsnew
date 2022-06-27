@@ -51,17 +51,17 @@ function Appointment(props) {
         let localData = JSON.parse(localStorage.getItem("users"))
         console.log(localData);
 
-        if(localData !== null && props.location.state) {
+        if (localData !== null && props.location.state) {
             let fdata = localData.filter((l) => l.id === props.location.state.id)
             console.log(fdata[0]);
-           
+
             formik.setValues(fdata[0])
 
         }
     })
 
 
-    const { handleSubmit, errors, handleChange, touched, handleBlur,values } = formik
+    const { handleSubmit, errors, handleChange, touched, handleBlur, values } = formik
 
     return (
         <section id="appointment" className="appointment">
@@ -90,11 +90,14 @@ function Appointment(props) {
                                     className="form-control"
                                     id="name"
                                     placeholder="Your Name"
-                                    errors={Boolean(errors.name && touched.name)}
-                                    value = {values.name}
-                                    errorMessages={errors.name}
+                                    // errors={Boolean(errors.name && touched.name)}
+                                    // value = {values.name}
+                                    // errorMessages={errors.name}
+                                    // onChange={handleChange}
+                                    // onBlur={handleBlur}
                                     onChange={handleChange}
-                                    onBlur={handleBlur}
+                                    errors={Boolean(errors.name)}
+                                    errormessage={errors.name}
                                 />
                                 <div className="validate" />
                             </div>
@@ -105,11 +108,14 @@ function Appointment(props) {
                                     name="email"
                                     id="email"
                                     placeholder="Your Email"
-                                    errors={Boolean(errors.email && touched.email)}
-                                    value = {values.email}
-                                    errorMessages={errors.email}
+                                    // errors={Boolean(errors.email && touched.email)}
+                                    // value = {values.email}
+                                    // errorMessages={errors.email}
+                                    // onChange={handleChange}
+                                    // onBlur={handleBlur}
                                     onChange={handleChange}
-                                    onBlur={handleBlur}
+                                    errors={Boolean(errors.name)}
+                                    errormessage={errors.name}
                                 />
                                 <div className="validate"
                                 />
@@ -121,11 +127,14 @@ function Appointment(props) {
                                     name="phone"
                                     id="phone"
                                     placeholder="Your Phone"
-                                    errors={Boolean(errors.phone && touched.phone)}
-                                    value = {values.phone}
-                                    errorMessages={errors.phone}
+                                    // errors={Boolean(errors.phone && touched.phone)}
+                                    // value = {values.phone}
+                                    // errorMessages={errors.phone}
+                                    // onChange={handleChange}
+                                    // onBlur={handleBlur}
                                     onChange={handleChange}
-                                    onBlur={handleBlur}
+                                    errors={Boolean(errors.phone)}
+                                    errormessage={errors.phone}
                                 />
                                 <div className="validate" />
                             </div>
@@ -138,19 +147,32 @@ function Appointment(props) {
                                     className="form-control datepicker"
                                     id="date"
                                     placeholder="Appointment Date"
-                                    errors={Boolean(errors.date && touched.date)}
-                                    errorMessages={errors.date}
-                                    value = {values.date}
+                                    // errors={Boolean(errors.date && touched.date)}
+                                    // errorMessages={errors.date}
+                                    // value = {values.date}
+                                    // onChange={handleChange}
+                                    // onBlur={handleBlur}
                                     onChange={handleChange}
-                                    onBlur={handleBlur}
+                                    errors={Boolean(errors.date)}
+                                    errormessage={errors.date}
                                 />
                                 <div className="validate" />
                             </div>
                             <div className="col-md-4 form-group mt-3">
-                                <Inputbox type="select" name="department" id="department" className="form-select" value = {values.department} errors={Boolean(errors.department && touched.department)}
-                                    errorMessages={errors.department}
+                                <Inputbox
+                                    type="select"
+                                    name="department"
+                                    id="department"
+                                    className="form-select"
+                                    // value={values.department}
+                                    // errors={Boolean(errors.department && touched.department)}
+                                    // errorMessages={errors.department}
+                                    // onChange={handleChange}
+                                    // onBlur={handleBlur}
                                     onChange={handleChange}
-                                    onBlur={handleBlur}>
+                                    errors={errors.department}
+                                    errormessage={errors.department}
+                                    >
                                     <option value>Select Department</option>
                                     <option value="Department 1">Department 1</option>
                                     <option value="Department 2">Department 2</option>
@@ -165,12 +187,17 @@ function Appointment(props) {
                                 className="form-control"
                                 name="message" rows={5}
                                 placeholder="Message (Optional)"
-                                defaultValue={""} 
-                                errors={Boolean(errors.message && touched.message)}
-                                value = {values.message}
-                                errorMessages={errors.message}
+                                defaultValue={""}
+                                // errors={Boolean(errors.message && touched.message)}
+                                // value = {values.message}
+                                // errorMessages={errors.message}
+                                // onChange={handleChange}
+                                // onBlur={handleBlur}
                                 onChange={handleChange}
-                                onBlur={handleBlur}/>
+                                errors={Boolean(errors.message)}
+                                errormessage={errors.message}
+
+                            />
                             <div className="validate" />
                         </div>
                         <div className="mb-3">
