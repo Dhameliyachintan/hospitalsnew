@@ -4,5 +4,5 @@ import { SignupReducer } from "./Auth.reducer";
 
 
 export const rootReducer = combineReducers({
-       reducer : SignupReducer
+       auth : SignupReducer
 })

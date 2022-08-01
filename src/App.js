@@ -14,11 +14,11 @@ import PrivateRoute from './container/Route/PrivateRoute';
 import Listappoinment from './container/Appoinment/Listappoinment';
 import Contact from './container/Contact';
 import { Provider } from 'react-redux';
-import { Counterreducer } from './Redux/Store';
 import Counter from './container/Counter/Counter';
+import { Configreducer } from './Redux/reduxsaga/Store';
 
 function App() {
-  let store = Counterreducer()
+  let store = Configreducer();
   return (
     <>
     <Provider store={store}>

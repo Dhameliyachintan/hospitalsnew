@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import { Form, Formik, useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { SignupUser } from './reduxsaga/auth.action';
+import { SignupUser } from '../Redux/reduxsaga/Action/auth.action';
+
 
 function Login(props) {
     const [userType, setUserType] = useState('Login')
@@ -34,7 +35,7 @@ function Login(props) {
         localStorage.setItem("users", JSON.stringify(values));
         alert(JSON.stringify(values, null, 2));
 
-       
+
     }
 
 
@@ -59,7 +60,7 @@ function Login(props) {
 
     let schema, initVal;
 
-    console.log(reset);
+    // console.log(reset);
     if (userType === "Login" && !reset) {
         schema = yup.object().shape(Login);
         initVal = {
@@ -98,7 +99,7 @@ function Login(props) {
     })
 
 
-    console.log(formik.errors);
+    // console.log(formik.errors);
 
     return (
         <section id="appointment" className="appointment d-flex">
@@ -195,7 +196,7 @@ function Login(props) {
                                         </div> :
                                         userType === 'Login' ?
                                             <div className='text-center mt-5'>
-                                                <span>create a New account</span>
+                                                <span>create a New account ?</span>
                                                 <a onClick={() => { setUserType('Signup') }} >signup</a> <br></br>
                                                 <a className='mt-3' onClick={() => { setReset(true) }}>Forget password</a>
                                             </div> :
