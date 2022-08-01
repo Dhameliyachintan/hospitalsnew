@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
 import { Form, Formik, useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { SignupUser } from './reduxsaga/auth.action';
 
 function Login(props) {
     const [userType, setUserType] = useState('Login')
     const [reset, setReset] = useState(false)
 
+    const dispatch = useDispatch()
+
     const handletLogin = (values) => {
         // alert(JSON.stringify(values, null, 2));
-        sessionStorage.setItem("user","1234567")
+        sessionStorage.setItem("user", "1234567")
 
     }
 
@@ -24,12 +28,16 @@ function Login(props) {
             data.push(values);
             localStorage.setItem("users", JSON.stringify(data));
         }
-        
+
         data.push(values);
         console.log(data);
-        // localStorage.setItem("users", JSON.stringify(values));
+        localStorage.setItem("users", JSON.stringify(values));
         alert(JSON.stringify(values, null, 2));
+
+       
     }
+
+
     const handlepassword = (values) => {
         alert(JSON.stringify(values.email));
     }
@@ -80,7 +88,8 @@ function Login(props) {
             if (userType === "Login" && !reset) {
                 handletLogin(values)
             } else if (userType === "Signup" && !reset) {
-                handleSignup(values)
+                // handleSignup(values)
+                dispatch(SignupUser(values))
             } else if (reset) {
                 handlepassword(values)
             }

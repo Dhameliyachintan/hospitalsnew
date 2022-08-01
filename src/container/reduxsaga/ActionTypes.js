@@ -1,0 +1,2 @@
+export const SIGNUP_USER = "SIGNUP_USER"
+export const EMAIL_VERIFY = "EMAIL_VERIFY"

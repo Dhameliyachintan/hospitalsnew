@@ -13,10 +13,15 @@ import PublicRoute from './container/Route/PublicRoute';
 import PrivateRoute from './container/Route/PrivateRoute';
 import Listappoinment from './container/Appoinment/Listappoinment';
 import Contact from './container/Contact';
+import { Provider } from 'react-redux';
+import { Counterreducer } from './Redux/Store';
+import Counter from './container/Counter/Counter';
 
 function App() {
+  let store = Counterreducer()
   return (
     <>
+    <Provider store={store}>
       <Header/>
       <Switch>
         <PublicRoute exact path={"/"} component={Home} />
@@ -26,9 +31,11 @@ function App() {
         <PublicRoute exact path={"/doctors"} component={Doctors}/>
         <PrivateRoute exact path={"/appointment"} component={Appointment}/>
         <PublicRoute exact path={"/Listappointment"} component={Listappoinment}/>
+        <PublicRoute exact path={"/Counter"} component={Counter}/>
         <PublicRoute restricted={true} exact path={"/Login"} component={Login}/>
       </Switch>
-      <Footer/>
+      <Footer/> 
+      </Provider>
     </>
   );
 }

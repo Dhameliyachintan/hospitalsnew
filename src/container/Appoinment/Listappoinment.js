@@ -67,22 +67,21 @@ function Listappoinment(props) {
 
 
     const handleSearch = (val) => {
-       let localdata = JSON.parse(localStorage.getItem("users"))
-      
-       let fdata = localdata.filter((d) => (
-         d.id.toString().includes(val) ||
-         d.name.toString().toLowerCase().includes(val.toLowerCase()) ||
-         d.email.toString().includes(val) ||
-         d.phone.toString().includes(val) ||
-         d.date.toString().includes(val)  ||
-         d.department.toLowerCase().includes(val.toLowerCase())  ||
-         d.message.toString().includes(val)
-       ))
+        let localdata = JSON.parse(localStorage.getItem("users"))
 
-       console.log(fdata);
+        let fdata = localdata.filter((d) => (
+            d.id.toString().includes(val) ||
+            d.name.toString().toLowerCase().includes(val.toLowerCase()) ||
+            d.email.toString().includes(val) ||
+            d.phone.toString().includes(val) ||
+            d.department.toLowerCase().includes(val.toLowerCase()) ||
+            d.message.toString().includes(val)
+        ))
 
-       setfilterdata(fdata)
-    // console.log(val);
+        console.log(fdata);
+
+        setfilterdata(fdata)
+        // console.log(val);
     }
 
     let fdata = filterdata.length > 0 ? filterdata : data
@@ -113,8 +112,8 @@ function Listappoinment(props) {
                             label='search'
                             variant='standard'
                             onChange={(e) => handleSearch(e.target.value)}
-                            
-                             />
+
+                        />
                         <div className="validate" />
                     </div>
                     <div style={{ height: 400, width: '100%' }}>
