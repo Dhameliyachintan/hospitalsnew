@@ -3,7 +3,7 @@ import { call, put, takeEvery, all } from 'redux-saga/effects'
 import { SignAPI } from "../../common/api/Auth.api";
 import { emailverify } from "./Action/auth.action";
 
-function* SignupUser(action) {
+function* Signup(action) {
     try {
         console.log(action.payload);
         const user = yield call(SignAPI, action.payload);
@@ -15,7 +15,7 @@ function* SignupUser(action) {
 
 
 function* watchsaga() {
-    yield takeEvery(ActionTypes.SIGNUP_USER, SignupUser);
+    yield takeEvery(ActionTypes.SIGNUP_USER, Signup);
 }
 
 export function* authsagacall () {
