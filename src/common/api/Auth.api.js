@@ -8,29 +8,41 @@ export const SignAPI = (data) => {
     return new Promise((resolve, reject) => {
         createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) => {
-                // Signed in 
                 const user = userCredential.user;
                 console.log(user);
 
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         sendEmailVerification(user)
-                        // User is signed in, see docs for a list of available properties
-                        // https://firebase.google.com/docs/reference/js/firebase.User
                         const uid = user.uid;
                         // ...
                     } else {
-                        // User is signed out
-                        // ...
+                        
                     }
                 })
                 // ...
             })
+            .then((emailVerified) => {
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        if (user.emailVerified) {
+                            console.log("Email Sucessfull");
+                        } else {
+                            console.log("Plese verify your Email");
+                        }
+                    } else {
+                        console.log("wrong verify"); // user ne kai no malt to 
+                    }
+                })
+            })
+
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode);
-                // ..
+                 
+                if(errorCode.localeCompare("auth/alerday use-email") == 0)
+                console.log("already RagistarEmail");
             });
     })
 }
