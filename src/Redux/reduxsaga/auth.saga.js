@@ -18,20 +18,19 @@ function* Signup(action) {
     }
 }
 
-// function* Login(action) {
-//     try {
-//         // console.log(action.payload);
-//         const user = yield call(LoginAPI, action.payload);
-//         console.log(user);
-//         yield put(SetAlert({ text: user.payload, color: "Success" }))
-//         console.log(user);
-//         yield put(emailverify(user));
-//     } catch (e) {
-//         console.log(e);
-//         yield put({ type: "USER_FETCH_FAILED", message: e.message });
-//         yield put(SetAlert({ text: e.payload, color: "error" }))
-//     }
-// }
+function* Login(action) {
+    try {
+        // console.log(action.payload);
+        const user = yield call(LoginAPI, action.payload);
+        console.log(user);
+        // yield put(SetAlert({ text: user.payload, color: "Success" }))
+        yield put(emailverify(user));
+    } catch (e) {
+        console.log(e);
+        yield put({ type: "USER_FETCH_FAILED", message: e.message });
+        // yield put(SetAlert({ text: e.payload, color: "error" }))
+    }
+}
 
 
 
