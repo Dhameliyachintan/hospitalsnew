@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import { Form, Formik, useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { SignupUser } from '../Redux/reduxsaga/Action/auth.action';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { LoginAction, SignupAction } from '../Redux/Action/auth.action';
 
 function Login(props) {
     const [userType, setUserType] = useState('Login')
@@ -15,19 +15,21 @@ function Login(props) {
     const handletLogin = (values) => {
         // alert(JSON.stringify(values, null, 2));
         sessionStorage.setItem("user", "1234567")
+        // dispatch(LoginAction(values))
 
     }
 
 
 
-    const TostifySignup = () => {
-        toast("Signup Successfull!")
-        // toast.success("Signup Successfull!")
-    }
+    // const TostifySignup = () => {
+    //     toast("Signup Successfull!")
+    //     // toast.success("Signup Successfull!")
+    // }
 
-    const Tostifylogin = () => {
-        toast("Login Successfull!")
-    }
+    // const Tostifylogin = () => {
+    //     toast("Login Successfull!")
+    // }
+    
 
     const handleSignup = (values) => {
 
@@ -46,7 +48,7 @@ function Login(props) {
         // console.log(data);
         // localStorage.setItem("users", JSON.stringify(values));
         // alert(JSON.stringify(values, null, 2));
-        dispatch(SignupUser(values))
+        dispatch(SignupAction(values))
 
     }
 
@@ -115,7 +117,7 @@ function Login(props) {
 
     return (
         <>
-            <ToastContainer closeButton={false} position="top-right"/>
+            <ToastContainer closeButton={false} position="top-right" />
             <section id="appointment" className="appointment d-flex">
                 <div className="container">
                     <div className='section-title'>
@@ -196,11 +198,11 @@ function Login(props) {
                                             :
                                             userType === 'Login' ?
                                                 <div className="text-center">
-                                                    <button onClick={ Tostifylogin} type="submit">Login</button><br></br>
+                                                    <button type="submit">Login</button><br></br>
                                                 </div> :
 
                                                 <div className="text-center">
-                                                    <button onClick={TostifySignup} type="submit">signup</button>
+                                                    <button type="submit">signup</button>
                                                 </div>
                                     }
                                     {

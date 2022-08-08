@@ -15,27 +15,29 @@ import Listappoinment from './container/Appoinment/Listappoinment';
 import Contact from './container/Contact';
 import { Provider } from 'react-redux';
 import Counter from './container/Counter/Counter';
-import { Configreducer } from './Redux/reduxsaga/Store';
+import { store } from './Redux/Store';
+import { SnackbarProvider } from 'notistack';
 
 function App() {
-  let store = Configreducer();
   return (
     <>
-    <Provider store={store}>
-      <Header/>
-      <Switch>
-        <PublicRoute exact path={"/"} component={Home} />
-        <PublicRoute exact path={"/about"} component={About}/>
-        <PublicRoute exact path={"/Contact"} component={Contact}/>
-        <PublicRoute exact path={"/departments"} component={Departments}/>
-        <PublicRoute exact path={"/doctors"} component={Doctors}/>
-        <PrivateRoute exact path={"/appointment"} component={Appointment}/>
-        <PublicRoute exact path={"/Listappointment"} component={Listappoinment}/>
-        <PublicRoute exact path={"/Counter"} component={Counter}/>
-        <PublicRoute restricted={true} exact path={"/Login"} component={Login}/>
-      </Switch>
-      <Footer/> 
-      </Provider>
+      <SnackbarProvider maxSnack={3}>
+        <Provider store={store}>
+          <Header />
+          <Switch>
+            <PublicRoute exact path={"/"} component={Home} />
+            <PublicRoute exact path={"/about"} component={About} />
+            <PublicRoute exact path={"/Contact"} component={Contact} />
+            <PublicRoute exact path={"/departments"} component={Departments} />
+            <PublicRoute exact path={"/doctors"} component={Doctors} />
+            <PrivateRoute exact path={"/appointment"} component={Appointment} />
+            <PublicRoute exact path={"/Listappointment"} component={Listappoinment} />
+            <PublicRoute exact path={"/Counter"} component={Counter} />
+            <PublicRoute restricted={true} exact path={"/Login"} component={Login} />
+          </Switch>
+          <Footer />
+        </Provider>
+      </SnackbarProvider>
     </>
   );
 }

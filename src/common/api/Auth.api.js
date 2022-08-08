@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebase"
 
 
@@ -17,7 +17,7 @@ export const SignAPI = (data) => {
                         const uid = user.uid;
                         // ...
                     } else {
-                        
+
                     }
                 })
                 // ...
@@ -26,12 +26,12 @@ export const SignAPI = (data) => {
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         if (user.emailVerified) {
-                            console.log("Email Sucessfull");
+                            resolve({ payload: "Email Sucessfull" });
                         } else {
-                            console.log("Plese verify your Email");
+                            resolve({ payload: "Plese verify your Email" });
                         }
                     } else {
-                        console.log("wrong verify"); // user ne kai no malt to 
+                        reject({ payload: "wrong verify" }); // user ne kai no malt to 
                     }
                 })
             })
@@ -39,10 +39,27 @@ export const SignAPI = (data) => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorCode);
-                 
-                if(errorCode.localeCompare("auth/alerday use-email") == 0)
-                console.log("already RagistarEmail");
+                // reject(errorCode);
+
+                if (errorCode.localeCompare("auth/alerday use-email") === 0)
+                    reject({ payload: "email already Ragistared" });
+                else {
+                    reject({ payload: errorCode });
+                }
+
             });
     })
+
 }
+
+// export const LoginAPI = (data) => {
+//     console.log(data);
+//     return new Promise((resolve, reject) => {
+//         signInWithEmailAndPassword(auth, data.email, data.password)
+//             .then((user) => {
+//                 console.log(user);
+//             }).catch((error) => {
+//                 console.log(error);
+//             })
+//     })
+// }

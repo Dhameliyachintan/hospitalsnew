@@ -1,7 +1,12 @@
 import *as ActionTypes from "../ActionTypes"
 
-export const SignupUser = (data) => (dispatch) => {
+export const SignupAction = (data) => (dispatch) => {
     dispatch({ type: ActionTypes.SIGNUP_USER, payload: data })
+    console.log(data);
+}
+
+export const LoginAction = (data) => (dispatch) => {
+    dispatch({ type: ActionTypes.LOGIN_USER, payload: data })
     console.log(data);
 }
 
