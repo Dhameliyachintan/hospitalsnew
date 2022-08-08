@@ -5,11 +5,6 @@ export const SignupAction = (data) => (dispatch) => {
     console.log(data);
 }
 
-export const LoginAction = (data) => (dispatch) => {
-    dispatch({ type: ActionTypes.LOGIN_USER, payload: data })
-    console.log(data);
-}
-
 export const emailverify = (user) => (dispatch) => {
     dispatch({ type: ActionTypes.EMAIL_VERIFY, payload: user })
 }
