@@ -55,11 +55,32 @@ export const SignAPI = (data) => {
 export const LoginAPI = (data) => {
     console.log(data);
     return new Promise((resolve, reject) => {
+
         signInWithEmailAndPassword(auth, data.email, data.password)
+
             .then((user) => {
                 console.log(user);
-            }).catch((error) => {
-                console.log(error);
+                if (user.user.emailVerified) {
+                    resolve({ payload: user.user });
+                }
+                else {
+                    reject({ payload: "please verfity your email" });
+                }
+                // console.log(user);        
             })
+
+            .catch((error) => {
+                if (error.code.localeCompare("auth/wrong-password") === 0) {
+                    reject({ payload: "wrong email or password" })
+                }
+                else if (error.code.localeCompare("auth/user-not-found") === 0) {
+                    reject({ payload: "please ragistred email" })
+                }
+                else {
+                    reject({ payload: error.code });
+                }
+                // console.log(error); 
+            });
+
     })
 }

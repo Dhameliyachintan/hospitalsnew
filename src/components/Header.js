@@ -1,8 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Alert from './Alert/Alert';
 
 function Header(props) {
+
+    const auth = useSelector(state => state.auth)
+    console.log(auth);
+
     return (
         <div className="main-header">
             <div id="topbar" className="d-flex align-items-center fixed-top">
@@ -65,7 +70,7 @@ function Header(props) {
                     <NavLink exact to={"/Login"} href="#" className="appointment-btn scrollto">
                         <span className="d-none d-md-inline">Login/ Signup</span>
                     </NavLink>
-            <Alert/>
+                    <Alert />
                 </div>
             </header>
         </div>

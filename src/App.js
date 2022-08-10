@@ -17,11 +17,12 @@ import { Provider } from 'react-redux';
 import Counter from './container/Counter/Counter';
 import { store } from './Redux/Store';
 import { SnackbarProvider } from 'notistack';
+import { Fade } from 'reactstrap';
 
 function App() {
   return (
     <>
-      <SnackbarProvider maxSnack={3}>
+      <SnackbarProvider TransitionComponent={Fade}>
         <Provider store={store}>
           <Header />
           <Switch>
@@ -33,7 +34,7 @@ function App() {
             <PrivateRoute exact path={"/appointment"} component={Appointment} />
             <PublicRoute exact path={"/Listappointment"} component={Listappoinment} />
             <PublicRoute exact path={"/Counter"} component={Counter} />
-            <PublicRoute restricted={true} exact path={"/Login"} component={Login} />
+            <PublicRoute restricted={false} exact path={"/Login"} component={Login} />
           </Switch>
           <Footer />
         </Provider>

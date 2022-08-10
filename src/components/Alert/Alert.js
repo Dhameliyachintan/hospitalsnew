@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetAlert, ResetAlert } from '../../Redux/Action/Alert.action';
+import { Fade } from 'reactstrap';
 
 
 function Alert(props) {
@@ -15,17 +16,16 @@ function Alert(props) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (alert !== undefined) {
-            if (alert.text !== '') {
-                enqueueSnackbar(alert.text, {
-                    variant: alert.color,
-                    anchororigin: {
-                        vertical: 'bottom',
-                        horizontal: 'left'
-                    }
-                });
-                setTimeout(dispatch(ResetAlert()), 2000);
-            }
+        if (alert.text !== '') {
+            enqueueSnackbar(alert.text, {
+                variant: alert.color,
+                TransitionComponent: Fade,
+                anchororigin: {
+                    vertical: 'top',
+                    horizontal: 'center',
+                }
+            });
+            setTimeout(dispatch(ResetAlert()), 2000);
         }
 
     }, [alert.text])
