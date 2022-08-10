@@ -3,11 +3,12 @@ import { call, put, takeEvery, all } from 'redux-saga/effects'
 import { LoginAPI, SignAPI } from "../../common/api/Auth.api";
 import { SetAlert } from "../Action/Alert.action";
 import { emailverify, Loggeduser } from "../Action/auth.action";
+import { history } from "../../History";
 
 function* Signup(action) {
     try {
         console.log(action.payload);
-        const user = yield call(SignAPI, action.payload);
+        const user = yield call(SignAPI, action.payload);    //request
         yield put(SetAlert({ text: user.payload, color: "Success" }))
         console.log(user);
         yield put(emailverify(user));
@@ -21,8 +22,9 @@ function* Signup(action) {
 function* Login(action) {
     try {
         // console.log(action.payload);
-        const user = yield call(LoginAPI, action.payload);
+        const user = yield call(LoginAPI, action.payload);    //request
         console.log(user);
+        history.push("/")
         yield put(SetAlert({ text: "Login successfull", color: "Success" }))
         yield put(Loggeduser(user))
         // yield put(emailverify(user));

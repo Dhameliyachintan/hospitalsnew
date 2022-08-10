@@ -67,9 +67,16 @@ function Header(props) {
                         Appointment</a> */}
                     <NavLink exact to={"/appointment"} href="./pages/appointment.html" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
                         Appointment</NavLink>
-                    <NavLink exact to={"/Login"} href="#" className="appointment-btn scrollto">
-                        <span className="d-none d-md-inline">Login/ Signup</span>
-                    </NavLink>
+                    {
+                        auth.user === null ?
+                            <NavLink exact to={"/Login"} href="#" className="appointment-btn scrollto">
+                                <span className="d-none d-md-inline">Login/ Signup</span>
+                            </NavLink>
+                            :
+                            <NavLink exact to={"/Login"} href="#" className="appointment-btn scrollto">
+                                <span className="d-none d-md-inline">Logout</span>
+                            </NavLink>
+                    }
                     <Alert />
                 </div>
             </header>
