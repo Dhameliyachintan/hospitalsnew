@@ -10,10 +10,22 @@ export const LoginAction = (data) => (dispatch) => {
     console.log(data);
 }
 
+export const emailverify = (user) => (dispatch) => {
+    dispatch({ type: ActionTypes.EMAIL_VERIFY, payload: user })
+}
+
+// Loggeduser
+
 export const Loggeduser = (data) => (dispatch) => {
     dispatch({type : ActionTypes.LOGGED_USER, payload : data})
 }
 
-export const emailverify = (user) => (dispatch) => {
-    dispatch({ type: ActionTypes.EMAIL_VERIFY, payload: user })
+// LogoutUser/LoggedinUser
+
+export const LogoutUser = () => (dispatch) => {
+    dispatch({type : ActionTypes.LOGOUT_USER})
+}
+
+export const LoggedinUser = () => (dispatch) => {
+    dispatch({type : ActionTypes.LOGGEDINOUT_USER})
 }

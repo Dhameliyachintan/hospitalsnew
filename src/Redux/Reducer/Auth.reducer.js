@@ -24,6 +24,13 @@ export const SignupReducer = (state = initialState, action, user) => {
                 user: action.payload,
                 error: ''
             }
+        case ActionTypes.LOGGEDINOUT_USER:
+            return {
+                ...state,
+                isLoading: false,
+                user: null,
+                error: ''
+            }
 
         default:
             return state

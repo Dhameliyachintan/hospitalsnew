@@ -36,7 +36,7 @@ function App() {
               <PrivateRoute exact path={"/appointment"} component={Appointment} />
               <PublicRoute exact path={"/Listappointment"} component={Listappoinment} />
               <PublicRoute exact path={"/Counter"} component={Counter} />
-              <PublicRoute restricted={false} exact path={"/Login"} component={Login} />
+              <PublicRoute restricted={true} exact path={"/Login"} component={Login} />
             </Switch>
             <Footer />
           </PersistGate>

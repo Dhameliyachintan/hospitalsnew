@@ -1,12 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { LogoutUser } from '../Redux/Action/auth.action';
 import Alert from './Alert/Alert';
 
 function Header(props) {
 
     const auth = useSelector(state => state.auth)
-    console.log(auth);
+    // console.log(auth);
+
+   const dispatch = useDispatch()
+
+    const handlelogout = () => {
+        dispatch(LogoutUser())
+        // console.log("logout sucessfull ");
+    }
 
     return (
         <div className="main-header">
@@ -73,7 +81,7 @@ function Header(props) {
                                 <span className="d-none d-md-inline">Login/ Signup</span>
                             </NavLink>
                             :
-                            <NavLink exact to={"/Login"} href="#" className="appointment-btn scrollto">
+                            <NavLink onClick={() => handlelogout()} exact to={"/Login"} href="#" className="appointment-btn scrollto">
                                 <span className="d-none d-md-inline">Logout</span>
                             </NavLink>
                     }

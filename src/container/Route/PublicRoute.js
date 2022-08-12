@@ -15,3 +15,4 @@ function PublicRoute({component: Component,restricted = false,...rest}) {
 }
 
 export default PublicRoute;
+    
