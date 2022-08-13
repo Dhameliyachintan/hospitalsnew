@@ -51,15 +51,3 @@ export const SignAPI = (data) => {
     })
 
 }
-
-// export const LoginAPI = (data) => {
-//     console.log(data);
-//     return new Promise((resolve, reject) => {
-//         signInWithEmailAndPassword(auth, data.email, data.password)
-//             .then((user) => {
-//                 console.log(user);
-//             }).catch((error) => {
-//                 console.log(error);
-//             })
-//     })
-// }
