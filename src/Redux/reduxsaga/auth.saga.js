@@ -35,15 +35,15 @@ function* Signup(action) {
 
 
 
-
-function* watchsaga() {
+function* watchsignuser() {
     yield takeEvery(ActionTypes.SIGNUP_USER, Signup);
-    yield takeEvery(ActionTypes.LOGIN_USER, Login);
 }
+
+
 
 export function* authsagacall() {
     yield all([
-        watchsaga()
+        watchsignuser(),
     ])
 }
 
