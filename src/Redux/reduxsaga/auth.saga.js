@@ -14,13 +14,13 @@ function* SignupUser(action) {
 }
 
 
-function* watchsaga() {
+function* watchsignuser() {
     yield takeEvery(ActionTypes.SIGNUP_USER, SignupUser);
 }
 
 export function* authsagacall () {
     yield all ([
-        watchsaga()
+        watchsignuser()
     ])
 }
 
