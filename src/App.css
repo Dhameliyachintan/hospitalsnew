@@ -37,4 +37,12 @@
   }
 }
 
+.button-google {
+   width: 200px;
+   height: 50px;
+   border : 1px solid #00000063;
+   background: transparent;
+   border-radius: 30px 30px 30px 30px;
+   margin-top: 20px;
+}
 

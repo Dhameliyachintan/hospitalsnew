@@ -19,7 +19,6 @@ function Alert(props) {
         if (alert.text !== '') {
             enqueueSnackbar(alert.text, {
                 variant: alert.color,
-                TransitionComponent: Fade,
                 anchororigin: {
                     vertical: 'top',
                     horizontal: 'center',

@@ -1,5 +1,6 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from "../../Firebase"
+import { GoogleAuthProvider } from "firebase/auth";
 
 
 
@@ -90,7 +91,6 @@ export const LogoutAPI = () => {
         signOut(auth)
             .then((user) => {
                 resolve({ payload: "Logout sucessfull" })
-                console.log("hojhjh")
             })
 
             .catch((error) => {
@@ -98,5 +98,32 @@ export const LogoutAPI = () => {
                 // console.log(error); 
             });
 
+    })
+}
+
+export const googleLoginAPI = () => {
+    const provider = new GoogleAuthProvider();
+    return new Promise((resolve, reject) => {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+
+                resolve({ payload: user })
+
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                
+                reject({ payload: errorCode })
+            });
     })
 }

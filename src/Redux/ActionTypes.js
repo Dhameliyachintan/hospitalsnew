@@ -10,6 +10,9 @@ export const LOGGED_USER = "LOGGED_USER"
 export const LOGOUT_USER = "LOGOUT_USER"
 export const LOGGEDINOUT_USER = "LOGGEDINOUT_USER"
 
+export const GOOGLE_USER = "GOOGLE_USER"
+
 export const SET_ALERT = "SET_ALERT"
 export const RESET_ALERT = "RESET_ALERT"
+
 

@@ -4,7 +4,7 @@ import { Form, Formik, useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { LoginAction, SignupAction } from '../Redux/Action/auth.action';
+import { googleActionLogin, LoginAction, SignupAction } from '../Redux/Action/auth.action';
 
 function Login(props) {
     const [userType, setUserType] = useState('Login')
@@ -29,7 +29,7 @@ function Login(props) {
     // const Tostifylogin = () => {
     //     toast("Login Successfull!")
     // }
-    
+
 
     const handleSignup = (values) => {
 
@@ -56,6 +56,16 @@ function Login(props) {
     const handlepassword = (values) => {
         alert(JSON.stringify(values.email));
     }
+
+    // sign with google
+
+    const handlegoogleLogin = (values) => {
+        dispatch(googleActionLogin())
+    }
+
+    // sign with google end
+
+
 
     let Login = {
         email: yup.string().required('enter email').email('enter valid email'),
@@ -205,6 +215,7 @@ function Login(props) {
                                                     <button type="submit">signup</button>
                                                 </div>
                                     }
+
                                     {
                                         reset === true ?
                                             <div className='text-center mt-5'>
@@ -222,7 +233,12 @@ function Login(props) {
                                                     <a onClick={() => { setUserType('Login') }} >Login</a>
                                                 </div>
                                     }
+
                                 </div>
+                                <button onClick={() => handlegoogleLogin()} className="button-google">
+                                    <img src="../assets/img/google.png" alt="" width={40} />Sign up google
+                                </button>
+
                             </Form>
                         </Formik>
                         <div>
