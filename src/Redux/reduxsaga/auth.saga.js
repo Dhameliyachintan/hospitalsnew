@@ -52,17 +52,28 @@ function* Logout(action) {
 
 
 
-function* watchsaga() {
+function* watchsignuser() {
     yield takeEvery(ActionTypes.SIGNUP_USER, Signup);
+}
+
+function* watchLoginuser() {
     yield takeEvery(ActionTypes.LOGIN_USER, Login);
+}
+
+function* watchLogoutuser() {
     yield takeEvery(ActionTypes.LOGOUT_USER, Logout);
 }
 
+
+
 export function* authsagacall() {
     yield all([
-        watchsaga()
+        watchsignuser(),
+        watchLoginuser(),
+        watchLogoutuser()
     ])
 }
+
 
 
 
