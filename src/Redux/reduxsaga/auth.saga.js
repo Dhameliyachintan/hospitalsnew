@@ -48,8 +48,8 @@ function* watchLoginuser() {
 
 export function* authsagacall() {
     yield all([
-        watchLogoutuser(),
-        watchsignuser()
+        watchsignuser(),
+        watchLoginuser()
     ])
 }
 
