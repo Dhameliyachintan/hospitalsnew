@@ -4,7 +4,7 @@ import { Form, Formik, useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { googleActionLogin, LoginAction, SignupAction } from '../Redux/Action/auth.action';
+import { forgetpasswordAction, googleActionLogin, LoginAction, SignupAction } from '../Redux/Action/auth.action';
 
 function Login(props) {
     const [userType, setUserType] = useState('Login')
@@ -54,7 +54,8 @@ function Login(props) {
 
 
     const handlepassword = (values) => {
-        alert(JSON.stringify(values.email));
+        // alert(JSON.stringify(values.email));
+        dispatch(forgetpasswordAction(values))
     }
 
     // sign with google
@@ -235,9 +236,11 @@ function Login(props) {
                                     }
 
                                 </div>
-                                <button onClick={() => handlegoogleLogin()} className="button-google">
-                                    <img src="../assets/img/google.png" alt="" width={40} />Sign up google
-                                </button>
+                                <div className='text-center'>
+                                    <button onClick={() => handlegoogleLogin()} className="button-google">
+                                        <img src="../assets/img/google.png" alt="" width={40} />Sign up google
+                                    </button>
+                                </div>
 
                             </Form>
                         </Formik>

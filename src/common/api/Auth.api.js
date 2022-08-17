@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from "../../Firebase"
 import { GoogleAuthProvider } from "firebase/auth";
 
@@ -122,8 +122,30 @@ export const googleLoginAPI = () => {
                 const email = error.customData.email;
                 // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
-                
+
                 reject({ payload: errorCode })
             });
+    })
+}
+
+
+export const forgetpasswordAPI = (data) => {
+    return new Promise((resolve, reject) => {
+        sendPasswordResetEmail(auth, data.email)
+            .then((user) => {
+                resolve({ payload: "Please Check Your email" })
+            })
+
+            .catch((error) => {
+                const errorCode = error.code;
+                // const errorMessage = error.message;
+
+                if (errorCode.localeCompare("auth/user-not-found") === 0)
+                    reject({ payload: "user-not-found" });
+
+                reject({ payload: errorCode })
+                // console.log(error); 
+            });
+
     })
 }
